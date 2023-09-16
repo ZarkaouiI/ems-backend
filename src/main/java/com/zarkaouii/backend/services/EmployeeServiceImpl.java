@@ -69,10 +69,15 @@ public class EmployeeServiceImpl implements EmployeeService{
     public EmployeeModel updateEmployee(Long id, EmployeeModel employeeModel) throws EmployeeDoesNotExistException {
         EmployeeModel emp = getEmployeeById(id);
         if(emp != null) {
-            Employee employee = new Employee( emp.getId() ,
-          employeeModel.getFirstName(),
-            employeeModel.getLastName(),
-            employeeModel.getEmail());
+//            Employee employee = new Employee(emp.getId(),
+//          employeeModel.getFirstName(),
+//            employeeModel.getLastName(),
+//            employeeModel.getEmail());
+            Employee employee = Employee.builder()
+                    .firstName(employeeModel.getFirstName())
+                    .lastName(employeeModel.getLastName())
+                    .email(employeeModel.getEmail())
+                    .build();
             employeeRepository.save(employee);
         }
         return emp;
